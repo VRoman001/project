@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (
         QLineEdit, QFormLayout,
         QHBoxLayout, QVBoxLayout, 
         QGroupBox, QButtonGroup, QRadioButton,  
-        QPushButton, QLabel, QSpinBox)
+        QPushButton, QLabel, QSpinBox, QListView, QFormLayout)
 
 from random import shuffle # функція для переміщення відповідей
 
@@ -18,7 +18,7 @@ height = 500
 window.resize(width, height)
 window.move(300, 300)
 window.setWindowTitle('Memory Card')
-
+'''
 # СТВОРЕННЯ ВІДЖЕТІВ
 btn_Menu = QPushButton('Меню') # кнопка повернення в головне меню
 btn_Sleep = QPushButton('Відпочити') # кнопка забирає головне вікно і повертає його після того, як таймер пройде
@@ -157,7 +157,58 @@ def ok():
 
 btn_OK.clicked.connect(ok)   
 
-
 show_date()
+'''
+
+
+button1 = QPushButton('Нове питання')
+button2 = QPushButton("Видалити питання")
+button3 = QPushButton("Почати тренування")
+
+text = QListView()
+
+
+form = QFormLayout()
+
+
+
+line1 = QLineEdit("")
+line2 = QLineEdit("")
+line3 = QLineEdit("")
+line4 = QLineEdit("")
+line5 = QLineEdit("")
+
+form.addRow('Питання',line1)
+form.addRow('Правильна відповідь:',line2)
+form.addRow('Неправильна відповідь N1',line3)
+form.addRow('Неправильна відповідь N2',line4)
+form.addRow('Неправильна відповідь N3',line5)
+
+layout_line1 = QHBoxLayout()
+layout_line2 = QHBoxLayout()
+layout_line3 = QHBoxLayout()
+
+layout_res = QVBoxLayout()
+
+layout_line1.addWidget(text)
+layout_line1.addLayout(form)
+
+
+layout_line2.addWidget(button1)
+layout_line2.addWidget(button2)
+
+layout_line3.addWidget(button3)
+
+layout_res.addLayout(layout_line1)
+layout_res.addLayout(layout_line2)
+layout_res.addLayout(layout_line3)
+window.setLayout(layout_res)
+
+
+
+
+
+
+
 window.show()
 app.exec_()
