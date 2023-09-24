@@ -2,10 +2,9 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
         QApplication, QWidget, 
         QTableWidget, QListWidget, QListWidgetItem,
-        QLineEdit, QFormLayout,
-        QHBoxLayout, QVBoxLayout, 
+        QLineEdit, QFormLayout,QHBoxLayout, QVBoxLayout, 
         QGroupBox, QButtonGroup, QRadioButton,  
-        QPushButton, QLabel, QSpinBox, QListView, QFormLayout)
+        QPushButton, QLabel, QSpinBox, QListView, QFormLayout,QTextEdit)
 
 from random import shuffle # функція для переміщення відповідей
 
@@ -158,7 +157,7 @@ def ok():
 btn_OK.clicked.connect(ok)   
 
 show_date()
-'''
+
 
 
 button1 = QPushButton('Нове питання')
@@ -206,9 +205,74 @@ window.setLayout(layout_res)
 
 
 
+#ФАЙЛИ--!
+
+with open('pyton.txt', 'r') as f:
+    f = f.read()
+    print(f)
+a = input("Хочете добавити тект?")
+while a == "так":
+    g = input("Введіть текст")
+    with open('pyton.txt', 'a') as d:
+        d = d.write(g)
+        
+        with open('pyton.txt', 'r') as j:
+            j = j.read()
+            print(j)
+            a = input("Хочете добавити тект?")
+print("oK")
+'''
 
 
 
+button1 = QPushButton('Створити замітки')
+button2 = QPushButton('Видалити замітки')
+button3 = QPushButton('Зберегти замітки')
+button4 = QPushButton('Створии тег')
+button5 = QPushButton('Видалити тег')
+button6 = QPushButton('Зберегти тег')
+
+text = QLabel()
+text1 = QLabel()
+
+Line = QLineEdit()
+Ed = QTextEdit()
+
+list1 = QListWidget()
+list2 = QListWidget()
+
+H = QHBoxLayout()
+H1 = QHBoxLayout()
+H2 = QHBoxLayout()
+
+V = QVBoxLayout()
+V1 = QVBoxLayout()
+
+
+V.addWidget(Ed)
+
+
+
+
+H1.addWidget(button1)
+H1.addWidget(button2)
+
+V1.addWidget(text) 
+V1.addWidget(list1)
+V1.addLayout(H1)
+V1.addWidget(button3)
+V1.addWidget(text1)
+V1.addWidget(list2)
+V1.addWidget(Line)
+
+H2.addWidget(button4)
+H2.addWidget(button5)
+V1.addLayout(H2)
+V1.addWidget(button6)
+
+H.addLayout(V)
+H.addLayout(V1)
+window.setLayout(H)
 
 window.show()
 app.exec_()
