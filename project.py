@@ -4,9 +4,10 @@ from PyQt5.QtWidgets import (
         QTableWidget, QListWidget, QListWidgetItem,
         QLineEdit, QFormLayout,QHBoxLayout, QVBoxLayout, 
         QGroupBox, QButtonGroup, QRadioButton,  
-        QPushButton, QLabel, QSpinBox, QListView, QFormLayout,QTextEdit)
+        QPushButton, QLabel, QSpinBox, QListView, QFormLayout,QTextEdit,QInputDialog)
 
 from random import shuffle # функція для переміщення відповідей
+import json
 
 app = QApplication([])
 
@@ -17,6 +18,13 @@ height = 500
 window.resize(width, height)
 window.move(300, 300)
 window.setWindowTitle('Memory Card')
+
+
+
+
+
+
+
 '''
 # СТВОРЕННЯ ВІДЖЕТІВ
 btn_Menu = QPushButton('Меню') # кнопка повернення в головне меню
@@ -274,5 +282,25 @@ H.addLayout(V)
 H.addLayout(V1)
 window.setLayout(H)
 
+
+def show_notes():
+    key = list1.selectedItems()[0].text()
+    Ed.setText(notes[key]["текст"])
+
+
+def add_notes():
+    dialog,ok = QInputDialog.getText(window,'Додати замітку','Назва замітки')
+    if dialog and ok != "":
+        notes[dialog] = {'текст':"","теги":[]}
+        list1.addItem(dialog)
+
+
+
+list1.itemClicked.connect(show_notes)
+button1.clicked.connect(add_notes)
+
+with open("f.json","r") as file:
+    notes = json.load(file)
+list1.addItems(notes)
 window.show()
 app.exec_()
