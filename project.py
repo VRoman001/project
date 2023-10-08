@@ -4,13 +4,13 @@ from PyQt5.QtWidgets import (
         QTableWidget, QListWidget, QListWidgetItem,
         QLineEdit, QFormLayout,QHBoxLayout, QVBoxLayout, 
         QGroupBox, QButtonGroup, QRadioButton,  
-        QPushButton, QLabel, QSpinBox, QListView, QFormLayout,QTextEdit,QInputDialog)
+        QPushButton, QLabel, QSpinBox, QListView, QFormLayout,QTextEdit,QInputDialog,QStyleFactory)
 
 from random import shuffle # функція для переміщення відповідей
 import json
 
 app = QApplication([])
-
+app.setStyle("Fusion")
 # СТВОРЕННЯ ГОЛОВНОГО ВІКНА
 window = QWidget()
 width = 600
@@ -18,10 +18,6 @@ height = 500
 window.resize(width, height)
 window.move(300, 300)
 window.setWindowTitle('Memory Card')
-
-
-
-
 
 
 
@@ -234,8 +230,14 @@ print("oK")
 
 
 button1 = QPushButton('Створити замітки')
+button1.setStyleSheet("background-color : pink ")
+
 button2 = QPushButton('Видалити замітки')
+button2.setStyleSheet("background-color : pink ")
+
 button3 = QPushButton('Зберегти замітки')
+button3.setStyleSheet("background-color : pink ")
+
 button4 = QPushButton('Створии тег')
 button5 = QPushButton('Видалити тег')
 button6 = QPushButton('Зберегти тег')
@@ -247,7 +249,10 @@ Line = QLineEdit()
 Ed = QTextEdit()
 
 list1 = QListWidget()
+list1.setStyleSheet("background-color : peach ")
+
 list2 = QListWidget()
+list2.setStyleSheet("background-color : aliceblue ")
 
 H = QHBoxLayout()
 H1 = QHBoxLayout()
@@ -285,21 +290,39 @@ window.setLayout(H)
 
 def show_notes():
     key = list1.selectedItems()[0].text()
-    Ed.setText(notes[key]["текст"])
+    Ed.setText(notes[key]["text"])
 
 
 def add_notes():
     dialog,ok = QInputDialog.getText(window,'Додати замітку','Назва замітки')
     if dialog and ok != "":
-        notes[dialog] = {'текст':"","теги":[]}
+        notes[dialog] = {'text':"","tags":[]}
         list1.addItem(dialog)
 
+def save_notes():
+    if list1.selectedItems():
+        key = list1.selectedItems()[0].text()
+        notes[key]["text"] = Ed.toPlainText()
+        with open("a.json","w") as file:
+            json.dump(notes,file)
 
+def del_notes():
+    if list1.selectedItems():
+        key = list1.selectedItems()[0].text()
+        del notes[key]
+        Ed.clear()
+        list1.clear()
+        list1.addItems(notes)
+        with open("a.json","w") as file:
+            json.dump(notes,file)
 
+button2.clicked.connect(del_notes)
 list1.itemClicked.connect(show_notes)
 button1.clicked.connect(add_notes)
+button3.clicked.connect(save_notes)
 
-with open("f.json","r") as file:
+
+with open("a.json","r") as file:
     notes = json.load(file)
 list1.addItems(notes)
 window.show()
