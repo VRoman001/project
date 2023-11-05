@@ -1,5 +1,6 @@
 from PIL import Image, ImageFilter
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import (
         QApplication, QWidget, 
         QTableWidget, QListWidget, QListWidgetItem,
@@ -386,7 +387,7 @@ button6 = QPushButton('ЧБ')
 
 list1 = QListWidget()
 
-text = QLabel()
+image = QLabel()
 
 
 h1 = QHBoxLayout()
@@ -403,7 +404,7 @@ h1.addWidget(button4)
 h1.addWidget(button5)
 h1.addWidget(button6)
 
-v2.addWidget(text)
+v2.addWidget(image)
 v2.addLayout(h1)
 
 h2.addLayout(v1)
@@ -414,7 +415,7 @@ window.setLayout(h2)
 
 def choise_workdir():
     global workdir 
-    workdir = QFileDialog.getExistingDirectory()І
+    workdir = QFileDialog.getExistingDirectory()
 
 def filter(files,extensions):
     rezult = []
@@ -432,6 +433,40 @@ def showfiles():
     list1.clear()
     for i in filenames:
         list1.addItem(i)
+
+
+
+class Image():
+    def __init__(self):
+        self.dir = None
+        self.image = None
+        self.filename = None
+
+    def loadimage(self,dir,filename):
+        self.dir = dir
+        self.filename = filename
+        image_path = os.path.join(dir,filename)
+        self.image = open(image_path)
+
+
+    def showimage(self,path):
+        image.hide()
+        pixmapimage = QPixmap(path)
+        w,h = image.width(), image.height()
+        pixmapimage = pixmapimage.scaled(w,h, Qt.KeepAspectRatio)
+        image.setPixmap(pixmapimage)
+        image.show()
+
+
+workimage = Image()
+def showChosenImage():
+   if list1.currentRow() >= 0:
+       filename = list1.currentItem().text()
+       workimage.loadimage(workdir,filename)
+       image_path = os.path.join(workdir, workimage.filename)
+       workimage.showimage(image_path)
+
+list1.currentRowChanged.connect(showChosenImage)
 
 button1.clicked.connect(showfiles)
 window.show()
