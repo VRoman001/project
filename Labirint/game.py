@@ -117,28 +117,28 @@ class Object(sprite.Sprite):
         global n
         n += 1
         if n % 87 == 0:
-            arrow = Arrow('arrow3.png',self.rect.centerx,self.rect.centery-14,50,30,10)
+            arrow = Arrow('arrow3.png',self.rect.centerx,self.rect.centery-5,50,10,10)
             arrows.add(arrow)
 
     def fire2(self):
         global n2
         n2 += 1
         if n2 % 87 == 0:
-            arrow = Arrow2('arrow2.2.png',self.rect.centerx-14,self.rect.centery,30,50,10)
+            arrow = Arrow2('arrow2.2.png',self.rect.centerx-5,self.rect.centery,10,50,10)
             arrows.add(arrow)
 
     def fire3(self):
         global n2
         n2 += 1
         if n2 % 87 == 0:
-            arrow = Arrow3('arrow2.2.png',self.rect.centerx-14,self.rect.centery,30,50,10)
+            arrow = Arrow3('arrow2.2.png',self.rect.centerx-5,self.rect.centery,10,50,10)
             arrows.add(arrow)
 
     def fire4(self):
         global n2
         n2 += 1
         if n2 % 87 == 0:
-            arrow = Arrow4('arrow2.2.png',self.rect.centerx-14,self.rect.centery,30,50,10)
+            arrow = Arrow4('arrow2.2.png',self.rect.centerx-5,self.rect.centery,10,50,10)
             arrows.add(arrow)
 
 
@@ -201,13 +201,57 @@ class Arrow4(Object):
 arrows = sprite.Group()
 arrows2 = sprite.Group()
 
+
+menu = display.set_mode((1100,700))
+display.set_caption('Лабіринт')
+picture2 = transform.scale(image.load("fon1.jpg"),(1100,700))
+
+
+start_button = Rect(400,180,300,100)
+exit_button = Rect(400,300,300,100)
+
+font.init()
+menu_font = font.Font(None,48)
+
+mg = True
+while mg:
+    for e in event.get():
+        if e.type == QUIT:
+            mg = False
+            game = False
+        elif e.type == MOUSEBUTTONDOWN and e.button ==1:
+            if exit_button.collidepoint(mouse.get_pos()):
+                mg = False
+                game = False
+            elif start_button.collidepoint(mouse.get_pos()):
+                mg = False
+                game = True
+    menu.blit(picture2,(0,0))
+    draw.rect(menu,(70,70,70),start_button)
+    draw.rect(menu,(70,70,70),exit_button)
+
+    start_text = menu_font.render('Start', True,(0,0,0))
+    exit_text = menu_font.render('Exit', True,(0,0,0))
+    menu.blit(start_text,(start_button.x+110, start_button.y+30))
+    menu.blit(exit_text,(exit_button.x+110, exit_button.y+30))
+
+
+
+    display.update()
+
+
+display.quit()
+display.init()
+
+
 window = display.set_mode((1100,700))
 picture = transform.scale(image.load("fon1.jpg"),(1100,700))
 
 keyr = Object("red1.png",819,240,40,40,10)
 keyb = Object("blue1.png",510,360,40,40,10)
 portal = Object("portal3.png",870,560,100,100,1)
-player1 = Object("gost7.png",50,580,45,45,4)
+kubok = Object("kubok.png",370,300,100,100,1) 
+player1 = Object("gost7.png",50,580,45,49,4)
 player2 = Object("gost2-2.png",200,180,70,70,5)
 
 arrow  = Arrow("dispenser.png",795,330,50,30,4)
@@ -267,7 +311,7 @@ walls.append(wall_blue)
 
 clock = time.Clock()
 
-game = True
+
 
 lvl1 = True
 lvl2 = False
@@ -341,9 +385,11 @@ while game:
 
         if sprite.collide_rect(player1,player2):
             game = False
+            mg = True
         
         if sprite.spritecollide(player1,arrows,False) or sprite.spritecollide(player1,arrows2,False):
             game = False
+            mg = True
 
 
         if sprite.collide_rect(player1,keyr):
@@ -464,9 +510,13 @@ while game:
             player1.rect.x = 150
             player1.rect.y = 580
             wall_red.rect.x = 90
-        
+            keyr.rect.x = 630
+            keyr.rect.y = 350
+
+
         if sprite.spritecollide(player1,arrows,False) or sprite.spritecollide(player1,arrows2,False):
             game = False
+            mg = True
 
 
         if sprite.collide_rect(player1,keyr):
@@ -478,7 +528,8 @@ while game:
             wall_blue.rect.x = -4732
 
         if sprite.collide_rect(player1,scarb):
-            lvl2 = False
+            kubok.reset()
+            
 
 
     display.update()
