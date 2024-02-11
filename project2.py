@@ -376,7 +376,7 @@ button6.clicked.connect(search_tags)
 with open("a.json","r") as file:
     notes = json.load(file)
 list1.addItems(notes)
-'''
+
 
 button1 = QPushButton('Папка')
 button2 = QPushButton('Вліво')
@@ -469,5 +469,7 @@ def showChosenImage():
 list1.currentRowChanged.connect(showChosenImage)
 
 button1.clicked.connect(showfiles)
+
+'''
 window.show()
 app.exec_()
