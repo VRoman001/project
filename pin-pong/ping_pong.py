@@ -1,4 +1,5 @@
 from pygame import*
+from project1 import *
 import  random 
 font.init()
 mixer.init()
@@ -8,7 +9,7 @@ mixer.music.play()
 sound = mixer.Sound('sound.mp3)
 sound.play()
 '''
- 
+
 # клас-батько для спрайтів
 class GameSprite(sprite.Sprite):
     #конструктор класу
@@ -42,6 +43,9 @@ class Player(GameSprite):
         if keys[K_s] and self.rect.y < win_height - 80:
             self.rect.y += self.speed
  
+ 
+
+
 #ігрова сцена:
 back = (20, 255, 25)  #колір фону (background)
 win_width = 600
@@ -56,61 +60,72 @@ ball = Player('ball.png',300,100,5,20,20)
 racket1 = Player('racket.png',500,300,5,30,70)
 
 
+
 sc = 0
 life = 3
 game = True
 finish = False
 clock = time.Clock()
-bx = 3
-by = 3
-while game:
-    for e in event.get():
-        if e.type == QUIT:
+bx = ball.speed
+by = ball.speed
+def starting():
+    global game
+    global finish
+    global life
+    global bx
+    global by
+    global clock
+    global sc
+
+    while game:
+        for e in event.get():
+            if e.type == QUIT:
+                game = False
+    
+
+        f1 = 'Score: ' + str(sc)
+        f2 = 'Life: ' + str(life)
+        score = font1.render(f1,True,(0,0,0))
+        score2 = font2.render(f2,True,(0,0,0))
+        window.fill(back)
+        window.blit(score,(220,100))
+        window.blit(score2,(220,50))
+
+        ball.reset()
+        racket.reset()
+        racket1.reset()
+
+        racket.update_l()
+        
+        if ball.rect.y > racket1.rect.y:
+            racket1.rect.y += ball.speed
+        if ball.rect.y < racket1.rect.y:
+            racket1.rect.y -= ball.speed
+        
+        ball.rect.x += bx
+        ball.rect.y += by
+
+        
+        if ball.rect.x >= 550 or ball.rect.x <= ball.wight:
+            ball.rect.x = 300
+            ball.rect.y = random.randint(100,400)
+            life -= 1
+
+        if ball.rect.y >= 450 or ball.rect.y <= ball.height:
+            by *= -1
+
+
+        if ball.rect.colliderect(racket) or ball.rect.colliderect(racket1):
+            bx *= -1
+            bx += 0.01
+            by += 0.01
+
+        if ball.rect.colliderect(racket):
+            sc += 1
+        if life == 0:
             game = False
-  
-
-    f1 = 'Score: ' + str(sc)
-    f2 = 'Life: ' + str(life)
-    score = font1.render(f1,True,(0,0,0))
-    score2 = font2.render(f2,True,(0,0,0))
-    window.fill(back)
-    window.blit(score,(220,100))
-    window.blit(score2,(220,50))
-
-    ball.reset()
-    racket.reset()
-    racket1.reset()
-
-    racket.update_l()
-    
-    if ball.rect.y > racket1.rect.y:
-        racket1.rect.y += 3
-    if ball.rect.y < racket1.rect.y:
-        racket1.rect.y -= 3
-    
-    ball.rect.x += bx
-    ball.rect.y += by
-
-    
-    if ball.rect.x >= 550 or ball.rect.x <= ball.wight:
-        ball.rect.x = 300
-        ball.rect.y = random.randint(100,400)
-        life -= 1
-
-    if ball.rect.y >= 450 or ball.rect.y <= ball.height:
-        by *= -1
 
 
-    if ball.rect.colliderect(racket) or ball.rect.colliderect(racket1):
-        bx *= -1
-        bx += 0.01
-        by += 0.01
 
-    if ball.rect.colliderect(racket):
-        sc += 1
-    if life == 0:
-        game = False
-
-
-    display.update()
-    clock.tick(60)
+        display.update()
+        clock.tick(60)
