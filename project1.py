@@ -12,7 +12,7 @@ def end():
 def help():
     help_menu = pygame_menu.Menu('M.M',600,400,theme=pygame_menu.themes.THEME_DARK.copy())
     help_menu.add.label('інформація')
-    help_menu.add.label('Щоб зіграти гу натисніть: запуск')
+    help_menu.add.label('Щоб зіграти гру натисніть: запуск')
     help_menu.add.label('Щоб зупинити гру натисніть: вихід')
 
     def back():
