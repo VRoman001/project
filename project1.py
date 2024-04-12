@@ -1,5 +1,7 @@
-from pygame import * 
+from pygame import *
+from ping_pong import *
 import pygame_menu
+from Pacman import*
 
 
 init()
@@ -27,7 +29,7 @@ def help():
 
     
 menu = pygame_menu.Menu('M.M',600,400,theme=pygame_menu.themes.THEME_DARK.copy())
-menu.add.button('start game',start)
+menu.add.button('start game',starting_1)
 menu.add.button('end game',end)
 menu.add.button('help',help)
 
