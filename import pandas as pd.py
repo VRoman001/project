@@ -12,7 +12,6 @@ df[list(pd.get_dummies(df['Embarked']).columns)] = pd.get_dummies(df['Embarked']
 df['Embarked'].fillna('S', inplace = True)
 df.drop('Embarked', axis = 1, inplace = True)
 
-
 age_1 = df[df['Pclass'] == 1]['Age'].median()
 age_2 = df[df['Pclass'] == 2]['Age'].median()
 age_3 = df[df['Pclass'] == 3]['Age'].median()
@@ -49,14 +48,16 @@ from sklearn.metrics import confusion_matrix,accuracy_score
 x = df.drop('Survived',axis = 1)
 y = df['Survived']
 
-x_train,y_train,x_test,y_test = train_test_split(x,y,test_size=0.25)
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.9)
 s = StandardScaler()
 x_train = s.fit_transform(x_train)
-y_train = s.transform(y_train)
+x_test = s.transform(x_test)
 
 n = KNeighborsClassifier(n_neighbors = 10)
 
 n.fit(x_train,y_train)
 
-y_prediction = n.perdict(x_test)
+y_prediction = n.predict(x_test)
 print(accuracy_score(y_test,y_prediction)*100)
+
+print(confusion_matrix(y_test,y_prediction))
