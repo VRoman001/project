@@ -1,0 +1,27 @@
+<!DOCTYPE html>  
+<html lang="uk">  
+<head>  
+    <link rel="stylesheet" href="style.css">
+    <title>Рецепти - Підсумок</title>  
+</head>  
+<body>  
+    <h1>Ваші Рецепти</h1>  
+    <table border="1">  
+        <thead>  
+            <tr>  
+                <th>Назва рецепту</th>  
+                <th>Інгредієнти</th>  
+                <th>Інструкції</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr>  
+                <td><?php echo htmlspecialchars($_GET['recipeName']); ?></td>  
+                <td><?php echo nl2br(htmlspecialchars($_GET['ingredients'])); ?></td>  
+                <td><?php echo nl2br(htmlspecialchars($_GET['instructions'])); ?></td>  
+            </tr>  
+        </tbody>  
+    </table>  
+    <a href = "/"><button>Повернути в головне меню</button></a>
+</body>  
+</html> 
