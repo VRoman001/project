@@ -1,6 +1,56 @@
-.content {
-    display: none;
+
+body {
+    background-image: url("https://st3.depositphotos.com/13324256/16372/i/450/depositphotos_163729864-stock-photo-fresh-vegetables-background.jpg");
+    background-size:cover;
+    background-color: rgb(250, 250, 250);
 }
-.active {
-    display: block;
+.rec {
+    margin-top: 300px;
+    margin-left: 600px;
+    margin-right: 600px;
+    border-radius: 15px;
+    text-align: center;
+    font-style: inherit;
+    font-size: 60px;
+    background: rgb(238, 227, 168);
+    padding: 10px 20px;
+    color:#343535;
+
+}
+.a1 {
+    all: unset; /* Скидаємо всі стилі за замовчуванням */
+    background-color: #ebd9b386; /* Зелений колір фону */
+    color: white;
+    padding: 25px 100px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 26px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 15px; /* Закруглені кути */
+    margin-left: 600px;
+    
+}
+.a2 {
+    all: unset; /* Скидаємо всі стилі за замовчуванням */
+    background-color: #ebd9b386; /* Зелений колір фону */
+    color: white;
+    padding: 25px 115px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 26px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 15px; /* Закруглені кути */
+}
+.a1:hover {
+    background-color:rgb(226, 228, 129);
+    transition: 0.7s;
+}
+
+.a2:hover {
+    background-color:rgb(226, 228, 129);
+    transition: 0.7s;
 }
