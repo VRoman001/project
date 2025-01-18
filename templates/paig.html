@@ -1,0 +1,25 @@
+<!DOCTYPE html>  
+<html lang="uk">  
+<head>  
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}"> 
+    <title>Додати Рецепт - Сторінка 1</title>  
+</head>  
+<body>  
+    
+    <h1 class = 'rec'>Додати Рецепт - Сторінка 1</h1>  
+    <form method="GET"> 
+        <label for="Name" class = 'a4'>Напишіть логін для таблиці</label> 
+        <input type="text" id="Name" name="Name" required> 
+        <label for="recipeName" class = 'a5'>Назва рецепту:</label>  
+        <input type="text" id="recipeName" name="recipeName" required><br>  
+
+        <label for="ingredients" class = 'a6'>Інгредієнти:</label> 
+        <label for="instructions" class = 'a7'>Інструкції:</label><br> 
+        <textarea class = 'a8' id="ingredients" name="ingredients" rows="4" required></textarea>  
+        <textarea id="instructions" name="instructions" rows="4" required></textarea><br>   
+
+        
+    </form>
+        <a href="/"><button class = 'a9'>Завершити</button> </a> 
+</body>  
+</html>

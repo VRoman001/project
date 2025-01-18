@@ -1,0 +1,29 @@
+<!DOCTYPE html>  
+<html lang="uk">  
+<head>  
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}"> 
+    <title>Рецепти - Підсумок</title>  
+</head>  
+<body>  
+    <h1 class = 'rec'>Ваші Рецепти</h1>  
+    <table>  
+        <thead>  
+            <tr>  
+                <th>Назва рецепту</th>  
+                <th>Інгредієнти</th>  
+                <th>Інструкції</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr>  
+            {% for p in recept %}
+                <td>{{p['login']}}</td>  
+                <td>{{p['recepr']}}</td>  
+                <td>{{p['instructions']}}</td>  
+            {% endfor %}
+            </tr>  
+        </tbody>  
+    </table> 
+    <a href="/"><button class = 'a3'>Повернутись</button> </a>  
+</body>  
+</html> 
