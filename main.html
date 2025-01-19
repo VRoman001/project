@@ -1,28 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <nav>
-            <button onclick ="showContent2('main')">Main</button>
-            <button onclick ="showContent2('menu')">Menu</button>
-            <button onclick ="showContent2('delivery')">Delivery</button>
-        </nav>
-            <div class="all">
-                <div id="main" class="content">
-                    <h1>This main</h1>
-                </div>
-                <div id="menu" class="content active">
-                    <h1>This menu</h1>
-                </div>
-                <div id="delivery" class="content">
-                    <h1>This delivery</h1>
-                </div>
-            </div>
-
-
-
-        <script src = "script.js"></script>
-    </body>
-</html>
+<!DOCTYPE html>  
+<html lang="uk">  
+<head>  
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}">
+    <title>Рецепти</title>  
+</head>  
+<body>  
+    <h1 class = "rec">Рецепти</h1>
+    <a href="/paig2"><button  class ="a1">Переглянути рецепти</button></a>
+    <a href="/paig"><button class ="a2">Додати рецепт</button></a>
+</body>  
+</html> 

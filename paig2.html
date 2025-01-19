@@ -1,12 +1,12 @@
 <!DOCTYPE html>  
 <html lang="uk">  
 <head>  
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}"> 
     <title>Рецепти - Підсумок</title>  
 </head>  
 <body>  
-    <h1>Ваші Рецепти</h1>  
-    <table border="1">  
+    <h1 class = 'rec'>Ваші Рецепти</h1>  
+    <table>  
         <thead>  
             <tr>  
                 <th>Назва рецепту</th>  
@@ -15,12 +15,17 @@
             </tr>  
         </thead>  
         <tbody>  
-            <tr>  
-                <td><?php echo htmlspecialchars($_GET['recipeName']); ?></td>  
-                <td><?php echo nl2br(htmlspecialchars($_GET['ingredients'])); ?></td>  
-                <td><?php echo nl2br(htmlspecialchars($_GET['instructions'])); ?></td>  
-            </tr>  
+             
+            {% for p in recepts %}
+            <tr class="trtr"> 
+                <td>{{p['Recepts']}}</td>
+                <td>{{p['Ingredients']}}</td>
+                <td>{{p['Instuction']}}</td>
+            </tr>
+            {% endfor %}
+              
         </tbody>  
-    </table>  
+    </table> 
+    <a href="/"><button class = 'a3'>Повернутись</button> </a>  
 </body>  
 </html> 

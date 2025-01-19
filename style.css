@@ -4,10 +4,29 @@ body {
     background-size:cover;
     background-color: rgb(250, 250, 250);
 }
+
+table {
+    border-collapse: collapse;
+    width: 40%; /* Займає всю ширину контейнера */
+    margin: 0 auto;
+}
+  
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+  
+th {
+    background-color: rgb(238, 233, 204);
+}
+td {
+    color:rgb(238, 233, 204);
+}
 .rec {
-    margin-top: 300px;
-    margin-left: 600px;
-    margin-right: 600px;
+    margin-top: 250px;
+    margin-left: 400px;
+    margin-right: 400px;
     border-radius: 15px;
     text-align: center;
     font-style: inherit;
@@ -21,7 +40,7 @@ body {
     all: unset; /* Скидаємо всі стилі за замовчуванням */
     background-color: #ebd9b386; /* Зелений колір фону */
     color: white;
-    padding: 25px 100px;
+    padding: 25px 17px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -29,14 +48,14 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 15px; /* Закруглені кути */
-    margin-left: 600px;
+    margin-left: 395px;
     
 }
 .a2 {
     all: unset; /* Скидаємо всі стилі за замовчуванням */
     background-color: #ebd9b386; /* Зелений колір фону */
     color: white;
-    padding: 25px 115px;
+    padding: 25px 55px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -51,6 +70,105 @@ body {
 }
 
 .a2:hover {
+    background-color:rgb(226, 228, 129);
+    transition: 0.7s;
+}
+
+.a3 {
+    all: unset; /* Скидаємо всі стилі за замовчуванням */
+    background-color: #ebd9b386; /* Зелений колір фону */
+    color: white;
+    padding: 8px 55px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 26px;
+    margin: 30px 2px;
+    cursor: pointer;
+    border-radius: 15px; /* Закруглені кути */
+    margin-left: 540px; 
+}
+.a3:hover {
+    background-color:rgb(226, 228, 129);
+    transition: 0.7s;
+}
+.a4 {
+    color: rgb(238, 227, 168);
+    padding: 50px 5px;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 500px;
+    margin-bottom: 50px;
+    
+}
+
+input[type="text"] {
+    padding: 3px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.a6 {
+    color: rgb(238, 227, 168);
+    padding: 5px 10px;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 485px;
+    
+}
+.a7 {
+    color: rgb(238, 227, 168);
+    padding: 5px 10px;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 165px;
+}
+textarea {
+    width: 20%; /* Занимает всю ширину родительского элемента */
+    height: 100px; /* Высота в пикселях */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical; /* Разрешить изменение размера только по вертикали */
+  }
+.a8 {
+    margin-left: 400px;
+}
+.a9 {
+    all: unset; /* Скидаємо всі стилі за замовчуванням */
+    background-color: #ebd9b386; /* Зелений колір фону */
+    color: white;
+    padding: 8px 55px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 26px;
+    margin: 15px 2px;
+    cursor: pointer;
+    border-radius: 15px; /* Закруглені кути */
+    margin-left: 540px; 
+}
+.a9:hover {
+    background-color:rgb(226, 228, 129);
+    transition: 0.7s;
+}
+
+.a10 {
+    all: unset; /* Скидаємо всі стилі за замовчуванням */
+    background-color: #ebd9b386; /* Зелений колір фону */
+    color: white;
+    padding: 8px 43px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 26px;
+    margin: 0px 2px;
+    cursor: pointer;
+    border-radius: 15px; /* Закруглені кути */
+    margin-left: 540px; 
+}
+.a10:hover {
     background-color:rgb(226, 228, 129);
     transition: 0.7s;
 }

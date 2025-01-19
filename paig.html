@@ -1,19 +1,22 @@
 <!DOCTYPE html>  
 <html lang="uk">  
 <head>  
-    <link rel="stylesheet" href="style.css">
-    <title>Додати Рецепт - Сторінка 2</title>  
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}"> 
+    <title>Додати Рецепт</title>  
 </head>  
 <body>  
-    <h1>Додати Рецепт - Сторінка 2</h1>  
-    <form method="GET">  
-        <input type="hidden" name="recipeName" value="<?php echo htmlspecialchars($_GET['recipeName']); ?>">  
-        <input type="hidden" name="ingredients" value="<?php echo htmlspecialchars($_GET['ingredients']); ?>">  
+    
+    <h1 class = 'rec'>Додати Рецепт</h1>  
+    <form action="/submit" method="POST"> 
+        <label for="recipeName" class = 'a4'>Назва рецепту:</label>  
+        <input type="text" id="recipeName" name="recipeName" required><br>  
 
-        <label for="instructions">Інструкції:</label><br>  
-        <textarea id="instructions" name="instructions" rows="4" required></textarea><br>  
-
-        <button type="submit">Завершити</button>  
-    </form>  
+        <label for="ingredients" class = 'a6'>Інгредієнти:</label> 
+        <label for="instructions" class = 'a7'>Інструкції:</label><br> 
+        <textarea class = 'a8' id="ingredients" name="ingredients" rows="4" required></textarea>  
+        <textarea id="instructions" name="instructions" rows="4" required></textarea><br>   
+        <a href="/"><button  class = 'a9' type="submit" >Завершити</button> </a> <br>
+    </form>
+    <a href="/"><button class = 'a10'>Повернутись</button> </a>   
 </body>  
 </html>  
