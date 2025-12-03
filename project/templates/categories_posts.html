@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Категорії та останні пости</h2>
+
+<div class="mb-3">
+    <h4 class ='c'>Додати нову категорію</h4>
+    <form method="post" action="/category/add">
+        <input type="text" name="name" class="form-control" placeholder="Назва категорії" required>
+        <input type="submit" value="Додати категорію" class="btn btn-primary mt-2">
+    </form>
+</div>
+
+
+<div class="container">
+    {% for cat, posts in data %}
+        <div class="card card-list mb-3">
+            <!-- Категорія як посилання -->
+            <div class="card-header">
+                <h3>
+                    <a href="/category/{{ cat[0] }}">{{ cat[1] }}</a>
+                </h3>
+            </div>
+
+            <!-- Список останніх постів -->
+            <ul class="list-group list-group-flush">
+                {% if posts %}
+                    {% for post in posts %}
+                        <li class="list-group-item">
+                            {{ post[2] }}
+                            <p class="date">{{ post[-1] }}</p>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item">Постів немає</li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

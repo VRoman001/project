@@ -1,0 +1,196 @@
+/* ТЕМИ */
+.form-control {
+    width: 20%;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 2px solid #6b6b6b;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 8px rgba(0, 64, 255, 0.4);
+}
+
+.btn-primary {
+    background: #3b3c42;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #3d63df;
+}
+
+.btn-primary:active {
+    background: #2e4ebd;
+    transform: scale(0.98);
+}
+
+.h {
+    text-align: center;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+}
+
+
+:root {
+    --bg: #0f172a;
+    --text: #e2e8f0;
+    --card: #1e293b;
+    --accent: #7c3aed;
+    --a:#262733;
+    --b:#1d1e27;
+}
+
+[data-theme="light"] {
+    --bg: #f1f5f9;
+    --text: #0f172a;
+    --card: #ffffff;
+    --a:#a1a3b6;
+    --b:#d2d4e1;
+}
+
+/* ОСНОВНЕ */
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    padding: 15px 20px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    background: var(--card);
+}
+
+.navbar a {
+    color: var(--text);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar h3 {
+    color: var(--text);
+}
+
+#themeToggle {
+    margin-left: auto;
+    padding: 6px 12px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.content {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.7;
+}
+
+.delete-btn {
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background-color: #d9534f; /* червоний */
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.2s;
+    margin-left: 6px;
+}
+
+.delete-btn:hover {
+    background-color: #c9302c; /* темніший червоний */
+    transform: scale(1.1);
+}
+
+.card-list a {
+    color: var(--text); /* світло-сірий */
+    text-decoration: none; /* щоб не було підкреслення */
+    font-size: 20px;
+    letter-spacing: normal;
+}
+
+.card-list a:hover {
+    color: var(--text); /* яскравий колір при наведенні */
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+
+.card-header h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.post-input {
+    background: var(--b);
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.45);
+    margin-top: 25px;
+}
+
+.post-area {
+    width: 100%;
+    background: var(--a);
+    border: none;
+    border-radius: 10px;
+    padding: 14px 0px;
+    color: white;
+    font-size: 16px;
+    resize: none;
+    outline: none;
+    transition: 0.2s;
+}
+
+.post-area:focus {
+    background: #2e2f3c;
+    box-shadow: 0 0 8px rgba(0,150,255,0.35);
+}
+
+.btn-post {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    background: #0d6efd;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-post:hover {
+    background: #0b5cd6;
+}

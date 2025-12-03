@@ -1,0 +1,37 @@
+{% extends "base.html"%}
+
+{% block content %}
+    <div class="post-input">
+        <form method="post">
+            <textarea class="post-area" name="text" placeholder="Напиши пост..." rows="3"></textarea>
+
+            <input type="hidden" name="category_id" value="{{ category_id }}">
+
+            <button type="submit" class="btn-post">Створити пост</button>
+        </form>
+    </div>
+    <div class="card card-list">
+        <div class="card-header">
+            <h2>Пости в ({{ post_list|length }}):</h2>
+        </div>
+        
+        <ul class="list-group list-group-flush">
+        {% for t in post_list %}
+            <li class="list-group-item">
+                <p>
+                    {{ t[2] }}
+
+                    <!-- Червона кнопка видалення в кружечку -->
+                    <a href="/post/delete/{{ t[0] }}{% if category_page %}/{{ t[1] }}{% endif %}" class="delete-btn">
+                        <span>X</span>
+                    </a>
+                </p>
+
+                <span class="date">{{ t[-1] }}</span>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+
+{% endblock %}

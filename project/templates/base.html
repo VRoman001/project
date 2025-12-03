@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='theme.js') }}"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="/">Головна</a>
+    <a href="/about">Що таке програмування?</a>
+    <a href="/learn">Як почати?</a>
+    <a href="/categories_posts">Пости</a>
+
+
+    <button id="themeToggle">🌓</button>
+</nav>
+
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    <p>© {{ 2025 }} Програмування для початківців
+        
+    </p>
+</footer>
+
+</body>
+</html>
