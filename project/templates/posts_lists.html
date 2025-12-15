@@ -1,37 +1,57 @@
-{% extends "base.html"%}
-
+{% extends "base.html" %}
 {% block content %}
-    <div class="post-input">
-        <form method="post">
-            <textarea class="post-area" name="text" placeholder="Напиши пост..." rows="3"></textarea>
 
-            <input type="hidden" name="category_id" value="{{ category_id }}">
+<div class="post-input">
+    <form method="post">
+        <textarea class="post-area" name="text" placeholder="Напиши пост..." rows="3"></textarea>
+        <input type="hidden" name="category_id" value="{{ category_id or '' }}">
+        <button type="submit" class="btn-post">Опублікувати</button>
+    </form>
+</div>
 
-            <button type="submit" class="btn-post">Створити пост</button>
-        </form>
-    </div>
-    <div class="card card-list">
-        <div class="card-header">
-            <h2>Пости в ({{ post_list|length }}):</h2>
+{% for item in post_list %}
+    <div class="card card-list mb-4">
+        <div class="card-body">
+            <p><strong>{{ item.author }}</strong> : {{ item.post.text }}</p>
+            <p class="text-muted small">({{ item.post.datetime|smartdate }})</p>
+            <small class="text-muted">
+                
+                {% if item.is_author or item.is_admin %}
+                    <a href="/post/delete/{{ item.post.post_id }}"
+                       class="delete-btn"
+                       onclick="return confirm('Видалити пост?')"
+                       style="float:right">X</a>
+                {% endif %}
+            </small>
+
+            <!-- КОМЕНТАРІ -->
+            <div class="comments mt-3">
+                {% if item.comments %}
+                    {% for c in item.comments %}
+                        <div class="comment mb-2" style="padding-left: 20px; border-left: 3px solid var(--accent);">
+                            <strong>{{ c.username }}</strong>: {{ c.text }}
+                            <small class="text-muted">· {{ c.date|smartdate }}</small>
+                            {% if c.user_id == session.user_id or session.is_admin %}
+                                <a href="/comment/delete/{{ c.id }}"
+                                   class="delete-btn"
+                                   style="font-size:10px;width:18px;height:18px;display:inline-block">X</a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <small class="text-muted">Коментарів немає</small>
+                {% endif %}
+
+                <!-- ФОРМА КОМЕНТАРІВ (тільки одна!) -->
+                <form method="post" action="/comment/add" class="mt-3">
+                    <input type="hidden" name="post_id" value="{{ item.post.post_id }}">
+                    <textarea name="text" placeholder="Написати коментар..." rows="1" class="post-area"
+                              style="font-size:14px;padding:8px;"></textarea>
+                    <button type="submit" class="btn-post" style="font-size:14px;padding:8px 12px;">Відповісти</button>
+                </form>
+            </div>
         </div>
-        
-        <ul class="list-group list-group-flush">
-        {% for t in post_list %}
-            <li class="list-group-item">
-                <p>
-                    {{ t[2] }}
-
-                    <!-- Червона кнопка видалення в кружечку -->
-                    <a href="/post/delete/{{ t[0] }}{% if category_page %}/{{ t[1] }}{% endif %}" class="delete-btn">
-                        <span>X</span>
-                    </a>
-                </p>
-
-                <span class="date">{{ t[-1] }}</span>
-            </li>
-        {% endfor %}
-        </ul>
     </div>
-
+{% endfor %}
 
 {% endblock %}

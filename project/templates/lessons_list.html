@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Уроки програмування</h1>
+<p>Проходь уроки по черзі — кожен відкриває наступний!</p>
+
+{% set total = lessons|length %}
+{% set done = read_lessons|length %}
+{% set progress = (done / total * 100)|round(1) if total > 0 else 0 %}
+
+<div class="progress-bar mb-4 text-center">
+    <strong>{{ done }} з {{ total }} уроків пройдено</strong>
+    <div class="progress mt-2" style="height: 20px;">
+        <div class="progress-bar bg-success" role="progressbar" style="width: {{ progress }}%;" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+            {{ progress }}%
+        </div>
+    </div>
+</div>
+
+<ol class="list-group list-group-numbered">
+    {% for lesson in lessons %}
+        {% set lesson_id = lesson.id if lesson.id is defined else lesson['id'] %}
+        {% set is_read = lesson_id in read_lessons %}
+        <li class="list-group-item d-flex justify-content-between align-items-center
+            {% if is_read %}bg-light text-success{% endif %}">
+            <div>
+                {% if is_read %}
+                    <s><strong>{{ lesson.title }}</strong></s>
+                    <small class="text-success ms-3">Пройдено</small>
+                {% else %}
+                    <strong>{{ lesson.title }}</strong>
+                {% endif %}
+            </div>
+            <a href="/lesson/{{ lesson_id }}" class="btn btn-sm
+                {% if is_read %}btn-outline-success{% else %}btn-primary{% endif %}">
+                {% if is_read %}Перечитати{% else %}Читати{% endif %}
+            </a>
+        </li>
+    {% endfor %}
+</ol>
+
+{% if total == 0 %}
+    <p class="text-muted mt-3">Уроків ще немає.</p>
+{% endif %}
+{% endblock %}

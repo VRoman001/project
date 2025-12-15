@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ task.title }}</h1>
+<p>{{ task.description }}</p>
+
+<form method="POST">
+    <textarea name="code" style="width:100%;height:200px;">{{ task.template }}</textarea>
+    <br><br>
+    <button type="submit">Перевірити</button>
+</form>
+
+{% if result %}
+    <hr>
+    {% if result == "success" %}
+        <div style="color:lightgreen;font-weight:bold;font-size:20px;">
+            ✔ Усі тести пройдено!
+        </div>
+    {% else %}
+        <div style="color:#ff6b6b;font-weight:bold;font-size:20px;">
+            ❌ Є помилки:
+        </div>
+        <ul>
+            {% for e in errors %}
+                <li>{{ e }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+
+{% endblock %}

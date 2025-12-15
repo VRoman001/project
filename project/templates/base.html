@@ -6,6 +6,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script defer src="{{ url_for('static', filename='theme.js') }}"></script>
 </head>
+
+<div class="flash-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
 <body>
 
 <nav class="navbar">
@@ -13,9 +24,18 @@
     <a href="/about">Що таке програмування?</a>
     <a href="/learn">Як почати?</a>
     <a href="/categories_posts">Пости</a>
+    <a href="/slovnyk">Словник</a>
 
-
-    <button id="themeToggle">🌓</button>
+    <div style="margin-left: auto; display: flex; align-items: center; gap: 15px;">
+        {% if session.username %}
+            <span>Привіт, <strong>{{ session.username }}</strong>!</span>
+            <a href="{{ url_for('logout') }}" style="color: #ff6b6b;">Вийти</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Увійти</a>
+            <a href="{{ url_for('register') }}">Реєстрація</a>
+        {% endif %}
+        <button id="themeToggle">Тема</button>
+    </div>
 </nav>
 
 
@@ -24,9 +44,7 @@
 </div>
 
 <footer>
-    <p>© {{ 2025 }} Програмування для початківців
-        
-    </p>
+    <p>© {{ 2025 }} Програмування для початківців</p>
 </footer>
 
 </body>

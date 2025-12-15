@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="lesson-content">
+    <h1>{{ lesson.title }}</h1>
+    <div class="content mt-4 p-4 bg-light rounded">
+        {{ lesson.content|safe }}
+    </div>
+
+    <div class="text-center mt-5">
+        {% if next_lesson %}
+            <a href="/lesson/{{ next_lesson }}" class="btn btn-success btn-lg px-5 py-3">
+                Наступний урок
+            </a>
+        {% else %}
+            <div class="p-5 bg-success text-white rounded">
+                <h2>Вітаємо! Ти пройшов усі 105 уроків!</h2>
+                <a href="/tasks" class="btn btn-light btn-lg mt-3">Перейти до завдань</a>
+            </div>
+        {% endif %}
+        <br><br>
+        <a href="/lessons">← Повернутися до списку</a>
+    </div>
+</article>
+{% endblock %}

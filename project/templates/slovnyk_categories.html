@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Категорії словника</h2>
+
+<div class="container">
+    {% for cat in categories %}
+        <div class="card card-list mb-3">
+            <div class="card-header">
+                <h3>
+                    <a href="/slovnyk/category/{{ cat['slovnyk_category'] }}">
+                        {{ cat['slovnyk_category'] }}
+                    </a>
+                </h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    Кількість записів: <b>{{ cat['count'] }}</b>
+                </li>
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

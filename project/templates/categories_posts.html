@@ -1,41 +1,33 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h2>Категорії та останні пости</h2>
+<h2>Категорії</h2>
 
-<div class="mb-3">
-    <h4 class ='c'>Додати нову категорію</h4>
+{% if session.user_id %}
+<div class="mb-4">
     <form method="post" action="/category/add">
-        <input type="text" name="name" class="form-control" placeholder="Назва категорії" required>
-        <input type="submit" value="Додати категорію" class="btn btn-primary mt-2">
+        <input type="text" name="name" placeholder="Нова категорія" class="form-control" required>
+        <button class="btn-primary mt-2">Додати</button>
     </form>
 </div>
-
+{% endif %}
 
 <div class="container">
-    {% for cat, posts in data %}
-        <div class="card card-list mb-3">
-            <!-- Категорія як посилання -->
-            <div class="card-header">
-                <h3>
-                    <a href="/category/{{ cat[0] }}">{{ cat[1] }}</a>
-                </h3>
-            </div>
-
-            <!-- Список останніх постів -->
-            <ul class="list-group list-group-flush">
-                {% if posts %}
-                    {% for post in posts %}
-                        <li class="list-group-item">
-                            {{ post[2] }}
-                            <p class="date">{{ post[-1] }}</p>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    <li class="list-group-item">Постів немає</li>
-                {% endif %}
-            </ul>
+{% for cat, posts in data %}
+    <div class="card card-list mb-4">
+        <div class="card-header">
+            <h3><a href="/category/{{ cat.category_id }}">{{ cat.category_name }} (<strong>{{ posts|length }}</strong>)</a></h3>
         </div>
-    {% endfor %}
+        <ul class="list-group list-group-flush">
+            {% for p in posts %}
+                <li class="list-group-item">
+                    <p>{{ p.text[:100] }}{% if p.text|length > 100 %}...{% endif %}</p>
+                    <small class="float-end text-muted">{{ p.date|smartdate }}</small>
+                </li>
+            {% else %}
+                <li class="list-group-item text-muted">Пусто</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}
 </div>
 {% endblock %}

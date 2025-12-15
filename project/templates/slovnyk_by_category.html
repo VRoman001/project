@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Словник: {{ category }}</h1>
+
+    <div class="card card-list mb-3">
+        <div class="card-header">
+            <h2>Записи ({{ entries|length }}):</h2>
+        </div>
+    </div>
+
+    <ul class="list-group list-group-flush">
+        {% for entry in entries %}
+            <div class="card card-list mb-3">
+                {% if entry['slovnyk_photo'] %}
+                    <!-- Фото береться прямо з шляху, який збережено у базі -->
+                    <img src="/{{ entry['slovnyk_photo'] }}" alt="" class="card-img-top">
+                {% endif %}
+                <div class="card-body">
+                    <p>{{ entry['slovnyk_text'] }}</p>
+
+                    <!-- При бажанні: кнопка видалення -->
+                    <!--
+                    <a href="/slovnyk/delete/{{ entry['slovnyk_id'] }}" class="delete-btn">
+                        <span>X</span>
+                    </a>
+                    -->
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if entries|length == 0 %}
+            <li class="list-group-item">Записів немає.</li>
+        {% endif %}
+    </ul>
+
+{% endblock %}
